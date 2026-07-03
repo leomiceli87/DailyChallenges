@@ -74,14 +74,13 @@ public class TwoSumTests
     }
 
     [Fact]
-    public void TwoSum_NaoDeveUsarOMesmoElementoDuasVezes()
+    public void TwoSum_NaoDeveUsarOMesmoElementoDuasVezes_DeveLancarArgumentException()
     {
         var nums = new[] { 3, 5 };
         var target = 6; // só existe 3+3=6, mas há apenas um "3" no array
 
-        var resultado = Solution.TwoSum(nums, target);
+        Action act = () => Solution.TwoSum(nums, target);
 
-        // Não deve retornar [0, 0]
-        resultado[0].Should().NotBe(resultado[1]);
+        act.Should().Throw<ArgumentException>().WithMessage("No two sum solution*");
     }
 }
